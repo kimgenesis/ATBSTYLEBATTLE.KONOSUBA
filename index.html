@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>2D KonoSuba ATB Style Battle</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="zzzzz.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="canvas-container"></div>
+
+        <div id="status-wrapper">
+            <div id="summon-gauge-wrapper" class="ui-box">
+                <span class="gauge-label lang" data-key="summon">SUMMON</span>
+                <div class="bar-container" id="gf-bar-container">
+                    <div id="gf-gauge-fill"></div>
+                </div>
+            </div>
+            <div id="party-status-box" class="ui-box">
+                <ul id="party-status-list"></ul>
+            </div>
+        </div>
+
+        <div id="command-ui-wrapper">
+            <div id="command-box" class="ui-box">
+                <h3 id="turn-indicator"></h3>
+                <ul id="command-list">
+                    <li data-action="attack"><span class="cursor"></span><span class="lang" data-key="attack">Attack</span></li>
+                    <li data-action="skill"><span class="cursor"></span><span class="lang" data-key="skill">Skill</span></li>
+                    <li data-action="magic"><span class="cursor"></span><span class="lang" data-key="magic">Magic</span></li>
+                    <li data-action="defend"><span class="cursor"></span><span class="lang" data-key="defend">Defend</span></li>
+                    <li data-action="item"><span class="cursor"></span><span class="lang" data-key="item">Item</span></li>
+                    <li data-action="limit"><span class="cursor"></span><span class="lang" data-key="limit_break">Limit Break</span></li>
+                    <li data-action="summon"><span class="cursor"></span><span class="lang" data-key="summon">Summon</span></li>
+                </ul>
+            </div>
+    
+            <div id="skill-box" class="ui-box">
+                <h3 class="lang" data-key="skills">SKILLS</h3>
+                <ul id="skill-list"></ul>
+            </div>
+    
+            <div id="magic-box" class="ui-box">
+                <h3 id="magic-box-title" class="lang" data-key="spells">SPELLS</h3>
+                <ul id="magic-list"></ul>
+            </div>
+    
+            <div id="item-box" class="ui-box">
+                <h3 class="lang" data-key="items">ITEMS</h3>
+                <ul id="item-list"></ul>
+            </div>
+            
+            <div id="summon-box" class="ui-box">
+                <h3 class="lang" data-key="summons">SUMMONS</h3>
+                <ul id="summon-list"></ul>
+            </div>
+    
+            <div id="target-box" class="ui-box">
+                 <h3 class="lang" data-key="use_on">Target?</h3>
+                 <ul id="target-list"></ul>
+            </div>
+        </div>
+
+
+        <div id="message-box" class="ui-box">
+            <p id="message-text"></p>
+        </div>
+
+        <div id="game-over"></div>
+        <div id="language-toggle" class="ui-box">EN</div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/20.0.3/tween.umd.min.js"></script>
+    <script src="xxxxx.js" defer></script>
+</body>
+</html>

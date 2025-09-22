@@ -1,0 +1,335 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 16px;
+    -webkit-font-smoothing: none;
+    font-smooth: never;
+}
+
+#game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+#canvas-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+canvas {
+    display: block;
+    cursor: default;
+}
+
+.ui-box {
+    position: absolute;
+    background-color: rgba(10, 20, 100, 0.85);
+    border: 4px solid #fff;
+    box-shadow: 0 0 0 4px #5a5a5a;
+    padding: 15px;
+    z-index: 10;
+    box-sizing: border-box;
+}
+
+/* --- Party Status & Summon Gauge Layout --- */
+#status-wrapper {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 5px;
+    align-items: flex-end;
+    width: 650px;
+}
+
+#status-wrapper .ui-box {
+    position: relative; 
+}
+
+#party-status-box {
+    width: 100%;
+}
+
+#party-status-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#party-status-box li {
+    display: grid;
+    grid-template-columns: 110px 130px 110px 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 15px;
+    align-items: center;
+    font-size: 11px;
+}
+
+#party-status-box li:last-child {
+    margin-bottom: 0;
+}
+
+.bar-container {
+    width: 100%;
+    height: 10px;
+    border: 2px solid #fff;
+    background-color: #111;
+}
+
+/* FIXED: Added vertical padding to give the bar breathing room */
+#summon-gauge-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.gauge-label {
+    font-size: 11px;
+    width: 95px;
+    text-align: right;
+    color: #ffde00;
+}
+
+#gf-bar-container {
+    flex-grow: 1;
+    height: 14px;
+    border: 2px solid #fff;
+    background-color: #111;
+}
+
+#gf-gauge-fill {
+    width: 0%;
+    height: 100%;
+    background-color: #9400D3;
+    transition: width 0.5s;
+}
+
+.bar-fill {
+    width: 0%;
+    height: 100%;
+    transition: width 0.3s ease-out;
+}
+
+.atb-bar-fill {
+    background-color: #ffde00;
+}
+
+.limit-bar-fill {
+    background-color: #ff4141;
+}
+
+/* --- Command UI --- */
+#command-ui-wrapper {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+}
+
+#command-ui-wrapper .ui-box {
+    position: relative;
+}
+
+#command-box,
+#magic-box,
+#skill-box,
+#item-box,
+#summon-box,
+#target-box {
+    width: 250px;
+    display: none;
+}
+
+#command-box {
+    display: none;
+}
+
+
+#command-box h3, #skill-box h3, #magic-box h3, #item-box h3, #summon-box h3, #target-box h3 {
+    margin-top: 0;
+    font-size: 14px;
+}
+
+#command-box ul,
+#magic-box ul,
+#skill-box ul,
+#item-box ul,
+#summon-box ul,
+#target-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#command-box li,
+#magic-box li,
+#skill-box li,
+#item-box li,
+#summon-box li,
+#target-box li {
+    padding: 8px;
+    cursor: pointer;
+    position: relative;
+}
+
+#command-box li:hover,
+#magic-box li:hover,
+#skill-box li:hover,
+#item-box li:hover,
+#summon-box li:hover,
+#target-box li:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#command-box li.disabled,
+#magic-box li.disabled,
+#skill-box li.disabled {
+    color: #888;
+    cursor: not-allowed;
+}
+
+#command-box li.disabled:hover,
+#magic-box li.disabled:hover,
+#skill-box li.disabled:hover {
+    background-color: transparent;
+}
+
+#command-box li.limit-ready {
+    color: yellow;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { text-shadow: 0 0 2px yellow; }
+    50% { text-shadow: 0 0 10px yellow; }
+    100% { text-shadow: 0 0 2px yellow; }
+}
+
+.cursor {
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 15px solid yellow;
+    display: none;
+}
+
+li.selected .cursor {
+    display: block;
+}
+
+#message-box {
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    min-height: 40px;
+    text-align: center;
+    display: none;
+}
+
+#game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    color: yellow;
+    text-shadow: 4px 4px #000;
+    display: none;
+    z-index: 100;
+}
+
+#language-toggle {
+    top: 10px;
+    right: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.minigame-button {
+    margin-top: 20px;
+    padding: 15px 30px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 24px;
+    color: #fff;
+    background-color: #ff4141;
+    border: 4px solid #fff;
+    cursor: pointer;
+    box-shadow: 0 0 0 4px #5a5a5a;
+}
+.minigame-button:active {
+    background-color: #d13131;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 1024px) {
+    .ui-box {
+        padding: 10px;
+    }
+    #status-wrapper {
+        width: 95%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    #command-ui-wrapper {
+        width: 95%;
+        left: 50%;
+        transform: translateX(-50%);
+        justify-content: center;
+    }
+
+    #command-box, #magic-box, #skill-box, #item-box, #summon-box, #target-box {
+        width: 200px;
+    }
+
+    #party-status-box li {
+        grid-template-columns: 80px 100px 80px 1fr 1fr;
+        gap: 8px;
+        font-size: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+    #status-wrapper {
+        flex-direction: column-reverse;
+    }
+    
+    #command-ui-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    #command-box, #magic-box, #skill-box, #item-box, #summon-box, #target-box {
+        width: 90%;
+        max-width: 400px;
+    }
+
+    #message-box {
+        width: 90%;
+    }
+}
